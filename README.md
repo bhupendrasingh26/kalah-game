@@ -5,11 +5,10 @@ A web application implementing 6-Stone variant of Game of Kalah
 RESTFul WebService exposing following endpoints. 
 
 
-Method    URL		        Action 	
-
-POST	  /kalah/play	     Updates the game state on a valid move.
-
-GET	    /kalah/start	 Returns a initialized game.	
+ Method  |  URL | Action 	
+ --- | --- | ---
+   POST	| /kalah/play |Updates the game state on a valid move.
+   GET |	/kalah/start |	Returns a initialized game.	
 
 Project includes a simple front-end based on JQuery which consumes 
 the RESTFul apis and letuser play the game. 

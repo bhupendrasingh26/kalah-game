@@ -15,7 +15,6 @@ Project includes a simple front-end based on JQuery which consumes
 the RESTFul apis and letuser play the game. 
 
 # Technologies Used : 
-==================================================================
 
 * Java 8 
 * Spring Boot
@@ -31,10 +30,12 @@ In order to run the application you need Java 8 and Maven.
 
 Please follow these steps.
 1) Clone the repository from GitHub.
- $ git clone https://github.com/bhupendrasingh26/kalah-game.git
+
+   $ git clone https://github.com/bhupendrasingh26/kalah-game.git
  
 2) Using command line to navigate to the location of pom file.
- $ mvn package && java -jar target\kalah-game-1.0.0.jar
+
+   $ mvn package && java -jar target\kalah-game-1.0.0.jar
 
 3) Access game using URL :  http://localhost:8080
 

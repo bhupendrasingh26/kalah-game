@@ -1,19 +1,34 @@
 package com.backbase.kalah;
 
+/**
+ * Represents various game states.
+ *
+ */
 enum Status {
   PLAYER1TURN, PLAYER2TURN, PLAYER1WINS, PLAYER2WINS
 }
 
+/**
+ * Represent a Kalah Game with associated players and status.
+ * 
+ * @author Bhupendra
+ *
+ */
 public class KalahGame {
 
   final static int noOfPits = 14;
+
   final static int startingPeebles = 6;
+
   private int[] board;
   private Status status;
   private String message;
   private KalahPlayer player1;
   private KalahPlayer player2;
 
+  /**
+   * Initializes Kalah game with start board configuration and status.
+   */
   public static KalahGame init() {
     KalahGame aGame = new KalahGame();
     int[] board = new int[noOfPits];
@@ -71,18 +86,26 @@ public class KalahGame {
     this.player2 = player2;
   }
 
+  /**
+   * Determines and update player turn.
+   */
   private void updateNextTurn() {
-    
-    if (status.equals(Status.PLAYER1TURN)){
-        status = Status.PLAYER2TURN;
-        return;
+
+    if (status.equals(Status.PLAYER1TURN)) {
+      status = Status.PLAYER2TURN;
+      return;
     }
-    if (status.equals(Status.PLAYER2TURN)){
-        status = Status.PLAYER1TURN;
-        return;
+    if (status.equals(Status.PLAYER2TURN)) {
+      status = Status.PLAYER1TURN;
+      return;
     }
+
   }
 
+  /**
+   * 
+   * Determines if the move is a valid one.
+   */
   public boolean isValidMove(int pit) {
     if (status.equals(Status.PLAYER1TURN)) {
       return 0 <= pit && pit <= 5;
@@ -92,6 +115,9 @@ public class KalahGame {
     return false;
   }
 
+  /**
+   * Execute the game as per the player move and update the board position.
+   */
   public void play(int pit) {
     if (this.status.equals(Status.PLAYER1TURN))
       play(pit, player1);
@@ -106,15 +132,15 @@ public class KalahGame {
     while (peebles > 0) {
       int dropPit = next(lastDropPit);
       if (isKalah(dropPit) && !player.isMyKalah(dropPit)) {
-          lastDropPit = dropPit;
-          continue;
+        lastDropPit = dropPit;
+        continue;
       }
       board[dropPit] += 1;
       peebles -= 1;
       lastDropPit = dropPit;
     }
 
-    if (player.isMyPit(lastDropPit)&& board[lastDropPit] == 1) {
+    if (player.isMyPit(lastDropPit) && board[lastDropPit] == 1) {
       board[player.getKalah()] += board[lastDropPit] + board[12 - lastDropPit];
       board[lastDropPit] = 0;
       board[12 - lastDropPit] = 0;
@@ -127,6 +153,9 @@ public class KalahGame {
 
   }
 
+  /**
+   * Determines if game has concluded and winner.
+   */
   private void checkGameStatus() {
     int pitSumSideOne = 0;
     for (int i = 0; i < 6; i++) {
@@ -138,23 +167,20 @@ public class KalahGame {
     }
     if (pitSumSideOne == 0 || pitSumSideTwo == 0) {
       board[player1.getKalah()] += pitSumSideOne;
-      board[player2.getKalah()]  += pitSumSideTwo;
+      board[player2.getKalah()] += pitSumSideTwo;
       if (board[player1.getKalah()] > board[player2.getKalah()]) {
         status = Status.PLAYER1WINS;
       } else {
         status = Status.PLAYER2WINS;
       }
-      
-     resetBoard();
+      resetBoard();
     }
-    
-    
   }
 
   private void resetBoard() {
     for (int i = 0; i < noOfPits; i++) {
       if (i != 6 && i != 13)
-          board[i] = 0;
+        board[i] = 0;
     }
   }
 
@@ -166,7 +192,7 @@ public class KalahGame {
     pit += 1;
     return pit % noOfPits;
   }
-  
+
   private int collectPebbles(int pit) {
     int peebles = board[pit];
     board[pit] = 0;

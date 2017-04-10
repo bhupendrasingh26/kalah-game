@@ -24,7 +24,7 @@ the RESTFul apis and letuser play the game.
 
 
 # Usage 
-===================================================================
+
 
 In order to run the application you need Java 8 and Maven.
 

@@ -39,7 +39,7 @@ Please follow these steps.
 3) Access game using URL :  http://localhost:8080
 
    
- # Demo 
+ # ScreenShots 
  
  ![gamestarts](https://cloud.githubusercontent.com/assets/8441446/24905121/6ff63802-1ed0-11e7-8ac6-935b879e9395.JPG)
  
